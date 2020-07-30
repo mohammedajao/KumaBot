@@ -1,0 +1,11 @@
+{
+  "token": "NzM4MjIzNDk2MDQzMTY3ODE0.XyIyNA.ZtYUE2reNq_KodBNrYz0JDBbinI",
+  "prefix": "!k ",
+  "currencyIcon": "🌸",
+  "primaryIcon": "🌸",
+  "ownerId": 354770549559263245,
+  "primaryColor": "#ffb7c5",
+  "WARNING_PERMISSION_DENIED": "Permisson denied. You cannot run this command.",
+  "mongodbPassword": "X98ljFBCvShdgu3M",
+  "mongodbURL": "mongodb://elo:X98ljFBCvShdgu3M@kumabot-shard-00-00.xkfzy.mongodb.net:27017,kumabot-shard-00-01.xkfzy.mongodb.net:27017,kumabot-shard-00-02.xkfzy.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-7zgk50-shard-0&authSource=admin&retryWrites=true&w=majority"
+}
