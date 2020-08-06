@@ -11,6 +11,12 @@ mongoose.connect(config.mongodbURL);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
+
+    function herokuJob() {
+      console.log(`App is running on port ${ PORT }`)
+    }
+
+    setInterval(herokuJob, 3600)
 });
 
 bot.commands = new Discord.Collection();
