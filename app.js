@@ -13,12 +13,11 @@ app.listen(PORT, () => {
   console.log(`Our app is running on port ${ PORT }`);
   let now = new Date();
   let delay = 3600*1000;
-  const start = delay - (now.getMinutes() * 60 + now.getSeconds()) * 1000 + now.getMilliseconds();
   function herokuJob() {
     console.log(`App is running on port ${ PORT }`)
   }
 
-  setInterval(herokuJob, start)
+  setInterval(herokuJob, delay)
 });
 
 bot.commands = new Discord.Collection();
