@@ -1,9 +1,10 @@
-const app = require("express.js");
+const express = require("express");
 const config = require("./settings.json");
 const mongoose = require("mongoose")
 const fs = require("fs");
 const Discord = require("discord.js");
 const bot = new Discord.Client();
+const app = express();
 
 mongoose.connect(config.mongodbURL);
 
