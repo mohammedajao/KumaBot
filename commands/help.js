@@ -10,6 +10,9 @@ module.exports = {
       .setDescription("Bot Information")
       .setColor("#15f153")
       .addField("Bot Name", bot.user.username);
+    for(const cmd of bot.commands.keys()) {
+      embed.addField(cmd, bot.commands.get(cmd).description)
+    }
     return message.channel.send(embed);
   }
 }

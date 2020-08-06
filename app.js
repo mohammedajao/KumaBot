@@ -49,7 +49,7 @@ bot.on("message", message => {
           break;
         }
       default:
-        bot.commands.get(command).execute(bot, message, args)
+        bot.commands.get(command).execute(bot, message, args);
     }
   }
 });
