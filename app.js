@@ -1,3 +1,4 @@
+const app = require("express.js");
 const config = require("./settings.json");
 const mongoose = require("mongoose")
 const fs = require("fs");
@@ -5,6 +6,11 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 
 mongoose.connect(config.mongodbURL);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
 
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
