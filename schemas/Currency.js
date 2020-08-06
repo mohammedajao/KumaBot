@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const currencySchema = mongoose.Schema({
+const currencySchema = new mongoose.Schema({
   name: String,
   userID: String,
   money: Number
