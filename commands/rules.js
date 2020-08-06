@@ -4,7 +4,7 @@ const rules = require("../rules.json");
 
 module.exports = {
   name: "rules",
-  description: "",
+  description: "Check the server rules.",
   execute: function(bot, message, args) {
     let embed = new Discord.MessageEmbed()
       .setColor(config.primaryColor)

@@ -33,7 +33,7 @@ for(const file of commandFiles) {
 bot.on("ready", () => {
   console.log("Kuma bot is now online!");
   const channel = bot.channels.cache.get("738539053372145715")
-  channel.send("@everyone Kuma Bot has come online!")
+  channel.send("Kuma Bot has come online!")
 });
 
 bot.on("message", message => {

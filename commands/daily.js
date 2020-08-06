@@ -8,7 +8,7 @@ const Currency = require("../schemas/Currency.js")
 
 module.exports = {
   name: "daily",
-  description: "",
+  description: `Get your daily ${config.currencyIcon}.`,
   execute: async function(bot, message, args) {
     const user = message.author
     let embed = new Discord.MessageEmbed();

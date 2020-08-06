@@ -3,7 +3,7 @@ const config = require("../settings.json");
 
 module.exports = {
   name: "coinflip",
-  description: "",
+  description: "This feature currently isn't complete.",
   execute: function(bot, message, args) {
     const chance = Math.floor(Math.random() * 10);
     if(chance < 5) {
