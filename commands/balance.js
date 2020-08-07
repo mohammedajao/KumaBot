@@ -6,7 +6,7 @@ const Currency = require("../schemas/Currency.js");
 
 module.exports = {
   name: "balance",
-  description: "Check your current currency",
+  description: `Check your how many flowers ${config.currencyIcon} you have.`,
   execute: async function(bot, message, args) {
     const user = message.author;
     let embed  = new Discord.MessageEmbed();

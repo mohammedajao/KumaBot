@@ -9,7 +9,9 @@ module.exports = {
       .setAuthor(bot.user.username)
       .setDescription("Bot Information")
       .setColor("#15f153")
-      .addField("Bot Name", bot.user.username);
+      .addField("Bot Name", bot.user.username)
+      .setThumbnail("https://cdn140.picsart.com/235170552010202.jpg")
+      .setFooter("Thank you for reading!", "https://cdn140.picsart.com/235170552010202.jpg");
     for(const cmd of bot.commands.keys()) {
       console.log(cmd);
       embed.addField(cmd, bot.commands.get(cmd).description)

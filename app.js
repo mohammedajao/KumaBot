@@ -42,10 +42,18 @@ bot.on("message", message => {
   if(bot.commands.get(command)) {
     console.log("Kuma Bot is attempting to run command [" + command + "]");
     switch(command) {
-      case "rules":
+      case "award":
         if(message.author.id != config.ownerId) {
           message.channel.send(config.WARNING_PERMISSION_DENIED)
-          break;
+        } else {
+          bot.commands.get(command).execute(bot, message, args);
+        }
+        break;
+      case "sb":
+        if(message.author.id != config.ownerId) {
+          message.channel.send(config.WARNING_PERMISSION_DENIED)
+        } else {
+          bot.commands.get(command).execute(bot, message, args);
         }
       default:
         bot.commands.get(command).execute(bot, message, args);
