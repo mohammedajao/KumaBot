@@ -48,6 +48,7 @@ module.exports = {
       } else {
         if(data.money < Math.abs(amount)) {
           message.channel.send("You do not have enough money to make this bet!")
+          return;
         }
         if(chance < 4) {
           embed.setDescription(`You got ${oppositeResult}. You lost ${amount} ${config.currencyIcon}.`)
