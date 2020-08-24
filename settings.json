@@ -4,6 +4,13 @@
   "currencyIcon": "🌸",
   "primaryIcon": "🌸",
   "ownerId": 354770549559263245,
+  "permissionLevels": ["administrators","moderators"],
+  "administrators": {
+    "354770549559263245": true
+  },
+  "moderators": {
+    "354770549559263245": true
+  },
   "primaryColor": "#ffb7c5",
   "WARNING_PERMISSION_DENIED": "Permisson denied. You cannot run this command.",
   "mongodbPassword": "X98ljFBCvShdgu3M",

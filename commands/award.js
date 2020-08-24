@@ -7,6 +7,7 @@ const Currency = require("../schemas/Currency.js")
 module.exports = {
   name: "award",
   description: `Awards a player an amount of ${config.currencyIcon}`,
+  permissionLevel: config.permissionLevels[0],
   execute: function(bot, message, args) {
     let embed = new Discord.MessageEmbed().setAuthor(bot.user.username);
     let user = message.mentions.users.first() || message.guild.members.cache.get(args[0]);

@@ -6,6 +6,8 @@ const Discord = require("discord.js");
 const DailyCurrency = require("../schemas/DailyCurrency.js")
 const Currency = require("../schemas/Currency.js")
 
+const DAILY_BONUS = 1000;
+
 module.exports = {
   name: "daily",
   description: `Get your daily ${config.currencyIcon}.`,
@@ -30,13 +32,13 @@ module.exports = {
             const newCurrency = new Currency({
               name: bot.users.cache.get(user.id).username,
               userID: user.id,
-              money: 100
+              money: DAILY_BONUS
             })
             newCurrency.save().catch(err => console.log(err))
-            embed.setDescription(`**${bot.users.cache.get(user.id).username}** is new and now has $100 ${config.primaryIcon}.`)
+            embed.setDescription(`**${bot.users.cache.get(user.id).username}** is new and now has $${DAILY_BONUS} ${config.primaryIcon}.`)
             message.channel.send(embed)
           } else {
-            info.money = info.money + 100
+            info.money = info.money + DAILY_BONUS
             info.save()
             embed.setDescription(`**${bot.users.cache.get(user.id).username}** now has ${info.money} ${config.primaryIcon}.`)
             message.channel.send(embed)
@@ -55,13 +57,13 @@ module.exports = {
               const newCurrency = new Currency({
                 name: bot.users.cache.get(user.id).username,
                 userID: user.id,
-                money: 100
+                money: DAILY_BONUS
               })
               newCurrency.save().catch(err => console.log(err))
-              embed.setDescription(`**${bot.users.cache.get(user.id).username}** is new and now has $100 ${config.primaryIcon}.`)
+              embed.setDescription(`**${bot.users.cache.get(user.id).username}** is new and now has $${DAILY_BONUS} ${config.primaryIcon}.`)
               message.channel.send(embed)
             } else {
-              info.money = info.money + 100
+              info.money = info.money + DAILY_BONUS
               info.save().catch(err => console.log(err))
               embed.setDescription(`**${bot.users.cache.get(user.id).username}** now has ${info.money} ${config.primaryIcon}.`)
               message.channel.send(embed)
