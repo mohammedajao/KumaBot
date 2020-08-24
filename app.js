@@ -5,6 +5,8 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const app = express();
+require('newrelic');
+
 
 mongoose.connect(config.mongodbURL);
 

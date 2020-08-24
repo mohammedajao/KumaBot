@@ -16,9 +16,9 @@ module.exports = {
         console.log(err);
         message.channel.send("Failed to fetch leaderboard. Check console for errors.")
       } else {
-        kumas.map(kuma => {
+        kumas.map((kuma, index) => {
           console.log(kuma)
-          embed.addField(kuma.name, `${kuma.money} ${config.currencyIcon}`)
+          embed.addField((index+1) + ". " + kuma.name, `${kuma.money} ${config.currencyIcon}`)
         })
         message.channel.send(embed);
       }
