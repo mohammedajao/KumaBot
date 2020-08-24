@@ -22,6 +22,10 @@ app.listen(PORT, () => {
   setInterval(herokuJob, delay)
 });
 
+app.get('/', (req,res) => {
+  return res.send("Hello, World!");
+});
+
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 
