@@ -18,11 +18,13 @@ module.exports = class ProfileCommand extends Kummando {
   }
 
   async run(message, args) {
+    const user = message.mentions.users.first() || message.author
+    console.log(user)
     await Profile.findOneAndUpdate({
-      _id: message.author.id,
+      _id: user.id,
       guildId: message.guild.id,
     }, {
-      _id: message.author.id,
+      _id: user.id,
       guildId: message.guild.id,
       $setOnInsert: {
         experience: 0,
@@ -33,12 +35,15 @@ module.exports = class ProfileCommand extends Kummando {
       new: true,
       upsert: true
     }).then((result) => {
+      const profiler = message.guild.members.cache.get(user.id)
+      const name = profiler.user.username
+      const nickname = profiler.nickname
       const outputEmbed = new MessageEmbed()
-        .setTitle(`${message.member.nickname || message.author.username}'s Profile`)
-        .setAuthor(message.member.nickname || message.author.username, message.author.avatarURL())
+        .setTitle(`${nickname || name}'s Profile`)
+        .setAuthor(nickname, user.avatarURL())
         .setTimestamp()
         .setColor(config.primaryColor)
-        .addField("Username", message.author.username)
+        .addField("Username", name)
         .addField("Level", result.level, true)
         .addField("Experience", result.experience, true)
         .addField("Flowers", result.money)

@@ -51,7 +51,7 @@ const fetchProfileAndUpdateXP = async (user, guild, amount) => {
       data.experience = Math.floor(data.experience - xpRequirement)
       data.level = data.level + 1
       data.save()
-      channel.send(`@${user.id} have leveled up to **${data.level}**.`)
+      channel.send(`<@${user.id}> have leveled up to **${data.level}**.`)
     }
   })
 }
