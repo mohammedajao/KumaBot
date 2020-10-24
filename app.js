@@ -120,7 +120,7 @@ client.on("voiceStateUpdate", (oldState, newState) => {
     if(oldChannel && oldChannel.id in vVoiceConnections && newState.member.id in vVoiceConnections[oldChannel.id]) {
       const voiceActivityInfo = vVoiceConnections[oldChannel.id][newState.member.id]
       const currentMinutes = new Date().getMinutes();
-      const differenceInMinutes = currentMinutes - voiceActivityInfo.initialTimestamp.getMinutes();
+      const differenceInMinutes = Math.abs(voiceActivityInfo.initialTimestamp.getMinutes() - currentMinutes);
       delete vVoiceConnections[oldChannel.id][oldState.member.id]
       // Add experience based on number of minutes in VC
       experienceSystem.addVCExperience(oldState || newState, 10 * differenceInMinutes)
@@ -132,7 +132,7 @@ client.on("voiceStateUpdate", (oldState, newState) => {
     }
     console.log(vVoiceConnections)
   } else {
-    console.log(`${newState.member.nickname || newState.member.username || newState.member.name} has changed VC state.`);
+    console.log(`${newState.member.nickname || newState.member.user.username} has changed VC state.`);
   }
 })
 
