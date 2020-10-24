@@ -10,9 +10,22 @@
   "author": "Moe",
   "license": "ISC",
   "dependencies": {
+    "commando-provider-mongo": "^1.1.1",
     "discord.js": "^12.2.0",
+    "discord.js-commando": "git+https://github.com/discordjs/commando.git",
     "express": "^4.17.1",
+    "module-alias": "^2.2.2",
+    "mongodb": "^3.6.2",
     "mongoose": "^5.9.26",
     "newrelic": "^6.12.1"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@schemas": "./schemas",
+    "@systems": "./systems",
+    "@util": "./util",
+    "@commands": "./commands",
+    "@static": "./static",
+    "@database": "./database"
   }
 }
