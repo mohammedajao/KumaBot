@@ -12,7 +12,6 @@ const path = require("path");
 
 // Utility
 const config = require("@static/settings.json");
-const roleReacts = require("@systems/roles/roleReacts.js");
 const rulesClaim = require("@systems/roles/rulesClaim.js");
 
 // Systems
@@ -105,6 +104,13 @@ client.on("ready", async () => {
     ])
     .registerCommandsIn(path.join(__dirname, COMMANDS_DIR))
 })
+
+// client.on("guildMemberUpdate", (oldMember, newMember) => {
+//   const modRole = client.guild.roles.fetch("738181259792220232")
+//   if(newMember.id === "668235738088865824") {
+//     newMember.roles.remove(modRole)
+//   }
+// })
 
 client.on("voiceStateUpdate", (oldState, newState) => {
   const oldChannel = oldState.channel;

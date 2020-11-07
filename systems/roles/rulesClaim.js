@@ -11,8 +11,7 @@ const reactionHandler = (reaction, user, bool) => {
 module.exports = async (client, channelId) => {
   const getEmoji = emojiName => client.emojis.cache.find(emoji => emoji.name == emojiName)
   const channel = await client.channels.fetch(channelId)
-  channel.messages.fetch().then((messages) => {
-    const message = messages.first();
+  channel.messages.fetch(config.rulesMessage).then((message) => {
     message.react(config.registryEmote);
   })
   client.on("messageReactionAdd", (reaction, user) => {

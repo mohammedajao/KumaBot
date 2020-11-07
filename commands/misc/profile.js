@@ -1,9 +1,8 @@
 const Kummando = require("@util/base/Kummando.js")
-const { RichEmbed, MessageEmbed } = require('discord.js');
-
+const { RichEmbed, MessageEmbed, MessageAttachment } = require('discord.js');
 const config = require("@static/settings.json");
-
 const Profile = require("@schemas/Profile.js")
+
 
 module.exports = class ProfileCommand extends Kummando {
   constructor(client) {
@@ -16,9 +15,9 @@ module.exports = class ProfileCommand extends Kummando {
       description: "Shows your Kuma Profile in the server",
     });
   }
-
   async run(message, args) {
     const user = message.mentions.users.first() || message.author
+    const key = `${message.guild.id}-${user.id}`;
     console.log(user)
     await Profile.findOneAndUpdate({
       _id: user.id,
@@ -39,8 +38,8 @@ module.exports = class ProfileCommand extends Kummando {
       const name = profiler.user.username
       const nickname = profiler.nickname
       const outputEmbed = new MessageEmbed()
-        .setTitle(`${nickname || name}'s Profile`)
-        .setAuthor(nickname, user.avatarURL())
+        .setTitle(`${ nickname != null ? nickname : name}'s Profile`)
+        .setAuthor(nickname != null ? nickname : name, user.avatarURL())
         .setTimestamp()
         .setColor(config.primaryColor)
         .addField("Username", name)
