@@ -76,7 +76,10 @@ app.get('/', (req,res) => {
 client.commands = new Discord.Collection();
 
 client.setProvider(
-  MongoClient.connect(config.mongodbURL)
+  MongoClient.connect(config.mongodbURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
     .then(client => {
       return new MongoDBProvider(client)
     }).catch(err => {

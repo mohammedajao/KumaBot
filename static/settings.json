@@ -20,6 +20,6 @@
   "WARNING_PERMISSION_DENIED": "Permisson denied. You cannot run this command.",
   "WARNING_ROLE_MISMATCH": "Denied. You do not have the required roles.",
   "WARNING_ARGS_MISMATCH": "Please enter the appropiate arguments.",
-  "mongodbPassword": "X98ljFBCvShdgu3M",
-  "mongodbURL": "mongodb://heroku_1bnkglfw:duhti1t2g041snl6dueignsj1v@ds049130.mlab.com:49130/heroku_1bnkglfw"
+  "mongodbPassword": "admin123",
+  "mongodbURL": "mongodb+srv://admin:admin123@kumabot.xkfzy.mongodb.net/KumaBot?retryWrites=true&w=majority"
 }
