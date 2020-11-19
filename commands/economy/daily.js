@@ -26,6 +26,7 @@ module.exports = class DailyCommand extends Kummando {
   }
 
   async checkDaily(message, user) {
+    const upsertDate = new Date(Date.now() - 86400000)
     await Profile.findOneAndUpdate({
       _id: user.id,
       guildId: message.guild.id
@@ -33,16 +34,15 @@ module.exports = class DailyCommand extends Kummando {
       _id: user.id,
       guildId: message.guild.id,
       $setOnInsert: {
-        money: 0
+        money: 0,
+        dailyClaim: upsertDate
       }
     }, {
       new: true,
       upsert: true
     }).then((result) => {
-      let differenceInDays = 2
-      if(result.dailyClaim) {
-        differenceInDays = ((new Date()).getTime() - new Date(result.dailyClaim).getTime()) / (1000 * 3600 * 24)
-      }
+      let lastClaim = new Date(result.dailyClaim)
+      let differenceInDays = this.checkDayDifference(1, lastClaim)
       if(differenceInDays >= 1) {
         result.dailyClaim = new Date()
         result.money = result.money + DAILY_ADDITIVE
@@ -54,15 +54,25 @@ module.exports = class DailyCommand extends Kummando {
         let timeLeft, timeUnit;
         [timeLeft, timeUnit] = this.getLeftoverTime(differenceInDays)
         const outputEmbed = new MessageEmbed()
-          .setDescription(`Your daily is currently not ready yet! You have ${timeLeft} ${timeUnit} left until you can claim your daily.`)
+          .setDescription(`[TEST]: Your daily is currently not ready yet! You have ${timeLeft} ${timeUnit} left until you can claim your daily.`)
         message.reply(outputEmbed)
       }
     })
   }
 
+  checkDayDifference(threshhold, oldDate) {
+    if(!threshhold)
+      return
+    const currDate = new Date()
+    const conversionVal = 1000 * 3600 * 24
+    const dateDifference = currDate.getTime() - oldDate.getTime()
+    const dayDifference = dateDifference/conversionVal
+    return dayDifference
+  }
+
   getLeftoverTime(differenceInDays) {
     let timeUnit = "hours"
-    let timeLeft = Math.floor(((1-differenceInDays)*24) % 60)
+    let timeLeft = Math.floor((1-differenceInDays)*24)
     if(timeLeft < 1) {
       timeLeft = Math.floor((1-differenceInDays)*1440)
       timeUnit = "minutes"
