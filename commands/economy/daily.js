@@ -54,7 +54,7 @@ module.exports = class DailyCommand extends Kummando {
         let timeLeft, timeUnit;
         [timeLeft, timeUnit] = this.getLeftoverTime(differenceInDays)
         const outputEmbed = new MessageEmbed()
-          .setDescription(`[TEST]: Your daily is currently not ready yet! You have ${timeLeft} ${timeUnit} left until you can claim your daily.`)
+          .setDescription(`Your daily is currently not ready yet! You have ${timeLeft} ${timeUnit} left until you can claim your daily.`)
         message.reply(outputEmbed)
       }
     })
