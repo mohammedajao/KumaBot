@@ -43,6 +43,10 @@ module.exports = class DailyCommand extends Kummando {
     }).then((result) => {
       let lastClaim = new Date(result.dailyClaim)
       let differenceInDays = this.checkDayDifference(1, lastClaim)
+      if(!result.dailyClaim) {
+        differenceInDays = 1
+        result.dailyClaim = new Date()
+      }
       if(differenceInDays >= 1) {
         result.dailyClaim = new Date()
         result.money = result.money + DAILY_ADDITIVE
