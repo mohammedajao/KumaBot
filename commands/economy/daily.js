@@ -2,7 +2,7 @@ const Kummando = require("@util/base/Kummando.js")
 const { RichEmbed, MessageEmbed } = require('discord.js');
 
 const config = require("@static/settings.json");
-
+const moment = require("moment")
 const Profile = require("@schemas/Profile.js")
 
 const DAILY_ADDITIVE = 1000;
@@ -26,7 +26,7 @@ module.exports = class DailyCommand extends Kummando {
   }
 
   async checkDaily(message, user) {
-    const upsertDate = new Date(Date.now() - 86400000)
+    const upsertDate = moment(new Date(Date.now() - 86400000)).format('YYYY-MM-DD[T00:00:00.000Z]')
     await Profile.findOneAndUpdate({
       _id: user.id,
       guildId: message.guild.id
@@ -45,10 +45,15 @@ module.exports = class DailyCommand extends Kummando {
       let differenceInDays = this.checkDayDifference(1, lastClaim)
       if(!result.dailyClaim) {
         differenceInDays = 1
-        result.dailyClaim = new Date()
+        result.dailyClaim = upsertDate
+        console.log("Added dailyClaim to result. Now saving...", result.dailyClaim)
+        result.save()
+      } else {
+        console.log(result._id, "has a dailyClaim!")
       }
       if(differenceInDays >= 1) {
         result.dailyClaim = new Date()
+        console.log(result.dailyClaim)
         result.money = result.money + DAILY_ADDITIVE
         result.save()
         const outputEmbed = new MessageEmbed()

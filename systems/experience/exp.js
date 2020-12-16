@@ -23,9 +23,9 @@ const xpToLevel = (exp, levelTarget, level) => {
 const assignRoles = (member, guild, level) => {
   ROLE_LEVELS.map(role => {
     const targetRole = guild.roles.cache.find(r => r.name === role.name)
-    if(level === role.levelRequirement) {
+    if(level >= role.levelRequirement) {
       member.roles.add(targetRole)
-      return
+      return role.name
     }
   })
 }
@@ -46,12 +46,14 @@ const fetchProfileAndUpdateXP = async (user, guild, amount) => {
   }).then(data => {
     const xpRequirement = xpToLevel(data.experience, data.level + 1, data.level)
     console.log(`Gave ${user.name || user.nickname || user.username} ${amount} xp. They have ${data.experience} XP and need ${xpRequirement} XP to level.`)
-    assignRoles(user, guild, data.level)
+    const roleGained  = assignRoles(user, guild, data.level)
     if(data.experience >= xpRequirement) {
       data.experience = Math.floor(data.experience - xpRequirement)
       data.level = data.level + 1
       data.save()
-      channel.send(`<@${user.id}> have leveled up to **${data.level}**.`)
+      channel.send(`<@${user.id}> has leveled up to **${data.level}**.`)
+      if(roleGained)
+        channel.send(`Congrats <@${user.id}>, you are now a **${roleGained}**.`)
     }
   })
 }
